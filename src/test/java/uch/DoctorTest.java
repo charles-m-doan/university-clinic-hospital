@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class EmployeeTest {
+public class DoctorTest {
 	
 	Employee underTest = new Doctor("Bill", "Heart");
 
