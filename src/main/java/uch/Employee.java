@@ -1,23 +1,32 @@
 package uch;
 
-public class Employee {
-	
+public abstract class Employee {
+
 	private static int currentId = 0;
-	
-	private final int id;
-	private String name;
-	private double salary;
+
+	protected final int id;
+	protected String name;
+	protected double salary;
+	protected boolean paid;
 
 	public Employee(int id) {
 		super();
 		this.id = id;
 		this.name = "Unknown";
+		this.paid = false;
 	}
 	
+	public abstract void paySalary();
+
+	public boolean hasBeenPaid() {
+		return paid;
+	}
+
 	public Employee(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.paid = false;
 	}
 
 	public String getName() {
@@ -31,18 +40,22 @@ public class Employee {
 	public int getId() {
 		return id;
 	}
-	
-	public static int getNewId() {
-		currentId++;
-		return currentId;
-	}
-	
+
 	public double getSalary() {
 		return salary;
 	}
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+	
+	public static int getNewId() {
+		currentId++;
+		return currentId;
+	}
+	
+	public String toString() {
+		return name + " | " + id + " | " + salary + " | " + paid;
 	}
 
 }
