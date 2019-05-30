@@ -5,15 +5,18 @@ public class Doctor extends Employee {
 	private String specialty;
 
 	public Doctor(String name, String specialty) {
-		super(Employee.getNewId());
+		super(Employee.getNewId(), name);
 		this.specialty = specialty;
-		this.name = name;
 		this.salary = 90000.0;
 	}
 	
 	public void paySalary() {
-		System.out.println(specialty + " doctor got paid.");
-		this.paid = true;
+		if (paid) {
+			System.out.println(name + " has already been paid");
+		} else {
+			System.out.println("Doctor " + name + " got paid.");
+			this.paid = true;
+		}
 	}
 
 	public String getSpecialty() {
@@ -21,7 +24,7 @@ public class Doctor extends Employee {
 	}
 	
 	public String toString() {
-		return name + " | " + id + " | " + salary + " | " + specialty + " | " + paid;
+		return "Doctor: " + name + " | " + id + " | " + salary + " | " + specialty + " | " + paid;
 	}
 	
 }

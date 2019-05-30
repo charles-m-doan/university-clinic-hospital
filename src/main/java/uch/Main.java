@@ -12,14 +12,18 @@ public class Main {
 		Doctor emp2 = new Doctor("Jill", "Lung");
 		Doctor emp3 = new Doctor("Jack", "Liver");
 		
-		
-		//System.out.println(emp1.getId() + " : " + emp2.getId() + " : " + emp3.getId());	
-		//System.out.println(emp1.getName() + " : " + emp2.getName() + " : " + emp3.getName());	
-		//System.out.println(emp1.getSpecialty() + " : " + emp2.getSpecialty() + " : " + emp3.getSpecialty());
-		
 		System.out.println(emp1);
 		System.out.println(emp2);
 		System.out.println(emp3);
+		
+		
+		Receptionist recep1 = new Receptionist("Jane");
+		Receptionist recep2 = new Receptionist("Elizabeth");
+		
+		System.out.println(recep1);
+		System.out.println(recep2);
+		
+		
 	}
 
 }
