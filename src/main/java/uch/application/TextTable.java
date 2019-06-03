@@ -1,4 +1,4 @@
-package uch.ui;
+package uch.application;
 
 import java.util.ArrayList;
 import java.util.Collections;

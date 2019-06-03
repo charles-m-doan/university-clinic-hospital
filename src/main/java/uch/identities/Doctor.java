@@ -1,9 +1,8 @@
-package uch.personel;
+package uch.identities;
 
 import java.util.Random;
 
 import uch.models.Employee;
-import uch.patients.Patient;
 
 public class Doctor extends Employee {
 
@@ -25,15 +24,16 @@ public class Doctor extends Employee {
 		this.salary = 90000.0;
 		}
 
+	@Override
 	public void paySalary()
 		{
 		if (paid)
 			{
-			System.out.println(getName() + " has already been paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" was already paid this session!");
 			}
 		else
 			{
-			System.out.println("Doctor " + getName() + " got paid.");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" has been paid.");
 			this.paid = true;
 			}
 		}
@@ -41,16 +41,6 @@ public class Doctor extends Employee {
 	public String getSpecialty()
 		{
 		return specialty;
-		}
-
-	public String toString()
-		{
-		String paidStatus = "has not been paid";
-		if (paid)
-			{
-			paidStatus = "has been paid";
-			}
-		return "Doctor: " + getName() + " | " + getId().toString() + " | " + salary + " | " + specialty + " | " + paidStatus;
 		}
 
 	public void drawBlood(Patient patient)

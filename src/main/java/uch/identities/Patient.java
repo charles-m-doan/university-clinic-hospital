@@ -1,4 +1,4 @@
-package uch.patients;
+package uch.identities;
 
 import java.util.ArrayList;
 
@@ -78,11 +78,6 @@ public class Patient extends Identity {
 	public int getBloodLevel()
 		{
 		return bloodLevel;
-		}
-
-	public String toString()
-		{
-		return "Patient: " + " | " + getName() + " | " + getId().toString();
 		}
 	
 	public ArrayList<String> getColumnLabels()

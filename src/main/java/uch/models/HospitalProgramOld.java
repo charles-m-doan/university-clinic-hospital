@@ -1,4 +1,4 @@
-package uch.application;
+package uch.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,15 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import uch.models.Employee;
-import uch.models.Identity;
-import uch.patients.Patient;
+import uch.identities.Patient;
 
-public class HospitalProgram {
+public class HospitalProgramOld {
 	private HashMap<UUID, Employee> employees;
 	private HashMap<UUID, Patient> patients;
 
-	public HospitalProgram()
+	public HospitalProgramOld()
 		{
 		employees = new HashMap<UUID, Employee>();
 		patients = new HashMap<UUID, Patient>();
@@ -42,6 +40,21 @@ public class HospitalProgram {
 				}
 			}
 		return matchingEmployees;
+		}
+
+	public ArrayList<String> getEmployeeNames()
+		{
+		return convertIdentitiesToNames(new ArrayList<Identity>(employees.values()));
+		}
+
+	public ArrayList<String> convertIdentitiesToNames(ArrayList<Identity> identities)
+		{
+		ArrayList<String> names = new ArrayList<String>();
+		for (Identity identity : identities)
+			{
+			names.add(identity.getName());
+			}
+		return names;
 		}
 
 	public ArrayList<Identity> getEmployeeTableList()
@@ -94,4 +107,13 @@ public class HospitalProgram {
 		{
 		return "-----Employees------\n" + getEmployeeListAsString() + "\n-----Patients------\n" + getPatientListAsString();
 		}
+
+	public String[] getAllEmployeeNames()
+		{
+		ArrayList<Employee> employeeList = new ArrayList<Employee>(employees.values());
+		ArrayList<String> employeeNames = new ArrayList<String>();
+
+		return null;
+		}
+
 }

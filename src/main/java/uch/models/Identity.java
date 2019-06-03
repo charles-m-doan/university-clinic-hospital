@@ -14,7 +14,7 @@ public abstract class Identity implements Comparable<Identity> {
 		{
 		super();
 		this.id = UUID.randomUUID();
-		this.firstName = "Name Unknown";
+		this.firstName = "Unknown";
 		this.middleName = "";
 		this.lastName = "";
 		}
@@ -27,24 +27,6 @@ public abstract class Identity implements Comparable<Identity> {
 		this.firstName = names[0];
 		this.middleName = names[1];
 		this.lastName = names[2];
-		}
-
-	public Identity(String firstName, String lastName)
-		{
-		super();
-		this.id = UUID.randomUUID();
-		this.firstName = firstName;
-		this.middleName = "";
-		this.lastName = lastName;
-		}
-
-	public Identity(String firstName, String middleName, String lastName)
-		{
-		super();
-		this.id = UUID.randomUUID();
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
 		}
 
 	public int compareTo(Identity identity)
@@ -83,19 +65,12 @@ public abstract class Identity implements Comparable<Identity> {
 
 	public String getName()
 		{
-		if (middleName.equals(""))
-			{
-			return firstName + " " + lastName;
-			}
-		else
-			{
-			return firstName + " " + middleName + " " + lastName;
-			}
+		return firstName + " " + lastName;
 		}
 
 	public String toString()
 		{
-		return id.toString() + " : " + getName();
+		return getName() + " : " + id.toString();
 		}
 
 	private static String[] parseNameString(String name)
@@ -118,7 +93,7 @@ public abstract class Identity implements Comparable<Identity> {
 			names[0] = tokens[0];
 			names[2] = tokens[1];
 			}
-		else if (tokens.length == 2)
+		else if (tokens.length == 1)
 			{
 			names[0] = tokens[0];
 			}
@@ -129,7 +104,7 @@ public abstract class Identity implements Comparable<Identity> {
 		{
 		ArrayList<String> columnLabels = new ArrayList<String>();
 		columnLabels.add("First Name");
-		//columnLabels.add("Middle Name");
+		// columnLabels.add("Middle Name");
 		columnLabels.add("Last Name");
 		columnLabels.add("ID");
 		return columnLabels;
@@ -139,7 +114,7 @@ public abstract class Identity implements Comparable<Identity> {
 		{
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(firstName);
-		//data.add(middleName);
+		// data.add(middleName);
 		data.add(lastName);
 		data.add(id.toString());
 		return data;

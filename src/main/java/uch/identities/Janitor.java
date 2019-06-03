@@ -1,4 +1,4 @@
-package uch.personel;
+package uch.identities;
 
 import uch.models.Employee;
 
@@ -17,14 +17,13 @@ public class Janitor extends Employee {
 		{
 		if (paid)
 			{
-			System.out.println(getName() + "has already been paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" was already paid this session!");
 			}
 		else
 			{
-			System.out.println("Janitor + name + got paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" has been paid.");
 			this.paid = true;
 			}
-
 		}
 
 	public boolean isSweeping()
@@ -35,16 +34,6 @@ public class Janitor extends Employee {
 	public void setSweeping(boolean sweeping)
 		{
 		this.sweeping = sweeping;
-		}
-
-	public String toString()
-		{
-		String paidStatus = "has not been paid";
-		if (paid)
-			{
-			paidStatus = "has been paid";
-			}
-		return "Janitor: " + getName() + " | " + getId().toString() + " | " + salary + " | " + paidStatus;
 		}
 
 	public String getJobTitle()

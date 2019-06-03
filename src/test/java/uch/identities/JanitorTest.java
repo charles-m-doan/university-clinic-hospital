@@ -1,10 +1,11 @@
-package uch.personel;
+package uch.identities;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import uch.personel.Receptionist;
+import uch.identities.Janitor;
+import uch.identities.Receptionist;
 
 public class JanitorTest {
 

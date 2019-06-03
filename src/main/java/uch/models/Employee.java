@@ -12,16 +12,6 @@ public abstract class Employee extends Identity {
 		super(name);
 		}
 
-	public Employee(String firstName, String lastName)
-		{
-		super(firstName, lastName);
-		}
-
-	public Employee(String firstName, String middleName, String lastName)
-		{
-		super(firstName, middleName, lastName);
-		}
-
 	public abstract void paySalary();
 
 	public boolean hasBeenPaid()
@@ -47,11 +37,6 @@ public abstract class Employee extends Identity {
 	public String getStatus()
 		{
 		return "Working";
-		}
-
-	public String toString()
-		{
-		return getName() + " | " + getId().toString() + " | " + salary + " | " + paid;
 		}
 
 	public ArrayList<String> getColumnLabels()

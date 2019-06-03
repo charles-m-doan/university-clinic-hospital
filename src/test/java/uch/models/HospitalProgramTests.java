@@ -1,24 +1,17 @@
-package uch;
+package uch.models;
 
-import uch.application.AppInterface;
 import uch.identities.Doctor;
 import uch.identities.Janitor;
 import uch.identities.Nurse;
 import uch.identities.Patient;
 import uch.identities.Receptionist;
-import uch.models.HospitalProgram;
 
-public class Main {
+public class HospitalProgramTests {
 
-	private Main()
+	HospitalProgram hp = new HospitalProgram();
+
+	public HospitalProgramTests()
 		{
-		}
-
-	public static void main(String[] args)
-		{
-		HospitalProgram hp = new HospitalProgram();
-
-		// Default Employees
 		hp.addEmployee(new Doctor("Ned Stark", Doctor.SPECIALTIES[0]));
 		hp.addEmployee(new Doctor("Rob Stark", Doctor.SPECIALTIES[1]));
 		hp.addEmployee(new Doctor("Jon Snow", Doctor.SPECIALTIES[6]));
@@ -40,9 +33,6 @@ public class Main {
 		hp.addPatient(new Patient("Mollie Carpenter"));
 		hp.addPatient(new Patient("Michael Carpenter"));
 		hp.addPatient(new Patient("Julius Caesar"));
-
-		AppInterface appInterface = new AppInterface(hp);
-		appInterface.startAppInterface();
 		}
 
 }

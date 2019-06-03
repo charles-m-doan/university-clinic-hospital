@@ -1,7 +1,6 @@
-package uch.personel;
+package uch.identities;
 
 import uch.models.Employee;
-import uch.patients.Patient;
 
 public class Nurse extends Employee {
 
@@ -26,11 +25,11 @@ public class Nurse extends Employee {
 		{
 		if (paid)
 			{
-			System.out.println(getName() + "has already been paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" was already paid this session!");
 			}
 		else
 			{
-			System.out.println("Nurse + name + got paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" has been paid.");
 			this.paid = true;
 			}
 		}
@@ -52,16 +51,6 @@ public class Nurse extends Employee {
 			{
 			numOfPatients = 0;
 			}
-		}
-
-	public String toString()
-		{
-		String paidStatus = "has not been paid";
-		if (paid)
-			{
-			paidStatus = "has been paid";
-			}
-		return "Nurse: " + getName() + " | " + getId().toString() + " | " + salary + " | " + paidStatus + " | currently giving care to " + numOfPatients + " patients.";
 		}
 
 	public void drawBlood(Patient patient)

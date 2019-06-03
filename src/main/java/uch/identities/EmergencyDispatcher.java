@@ -1,4 +1,4 @@
-package uch.personel;
+package uch.identities;
 
 import uch.models.Employee;
 
@@ -18,11 +18,11 @@ public class EmergencyDispatcher extends Employee {
 		{
 		if (paid)
 			{
-			System.out.println(getName() + " has already been paid");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" was already paid this session!");
 			}
 		else
 			{
-			System.out.println("Receptionist " + getName() + " got paid.");
+			System.out.println(getJobTitle() + " \"" + getName() + "\" has been paid.");
 			this.paid = true;
 			}
 		}
@@ -35,11 +35,6 @@ public class EmergencyDispatcher extends Employee {
 	public void setOnPhone(boolean onPhone)
 		{
 		this.onPhone = onPhone;
-		}
-
-	public String toString()
-		{
-		return "Receptionist: " + getName() + " | " + getId().toString() + " | " + salary + " | " + paid;
 		}
 
 	public String getJobTitle()

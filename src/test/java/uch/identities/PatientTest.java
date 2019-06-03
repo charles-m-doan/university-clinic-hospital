@@ -1,8 +1,10 @@
-package uch.patients;
+package uch.identities;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import uch.identities.Patient;
 
 public class PatientTest {
 
