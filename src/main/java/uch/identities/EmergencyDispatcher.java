@@ -1,5 +1,6 @@
 package uch.identities;
 
+import uch.Global;
 import uch.models.Employee;
 
 public class EmergencyDispatcher extends Employee {
@@ -11,6 +12,16 @@ public class EmergencyDispatcher extends Employee {
 		super(name);
 		this.onPhone = false;
 		this.salary = 45000;
+		}
+	
+	@Override
+	public void tick()
+		{
+		int randomValue = Global.getValueBetweenRange(0, 100);
+		if (randomValue > 50)
+			{
+			onPhone = !onPhone;
+			}
 		}
 
 	@Override

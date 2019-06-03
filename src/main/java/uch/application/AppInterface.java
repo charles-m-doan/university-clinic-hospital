@@ -8,6 +8,7 @@ import uch.identities.Janitor;
 import uch.identities.Nurse;
 import uch.identities.Patient;
 import uch.identities.Receptionist;
+import uch.interfaces.CareGiver;
 import uch.models.Employee;
 import uch.models.HospitalProgram;
 import uch.models.Identity;
@@ -15,8 +16,9 @@ import uch.models.Identity;
 public class AppInterface {
 
 	private static final String NEWLINE = System.getProperty("line.separator");
-	private static final String[] MAIN_MENU_OPTIONS = { "Pass Time", "Hire Employee", "Fire Employee", "Pay Employee", "Task Employee", "Admit Patient", "Discharge Patient", "Quit" };
+	private static final String[] MAIN_MENU_OPTIONS = { "Pass Time", "Hire Employee", "Fire Employee", "Pay Employee", "Task Medical Employee", "Admit Patient", "Discharge Patient", "Quit" };
 	private static final String[] EMPLOYEE_TYPE_MENU_OPTIONS = { "Doctor", "Nurse", "Janitor", "Receptionist" };
+	private static final String[] MED_TASK_MENU_OPTIONS = { "Give Care", "Draw Blood", "Cancel" };
 
 // INSTANCE VARIABLES
 	private Scanner input;
@@ -95,7 +97,7 @@ public class AppInterface {
 				payEmployee();
 				break;
 			case 4:
-				taskEmployee();
+				taskMedicalEmployee();
 				break;
 			case 5:
 				admitPatient();
@@ -113,7 +115,8 @@ public class AppInterface {
 
 	private void tickProgram() throws Exception
 		{
-		System.out.println("Pass time not yet implemented.");
+		hp.tickAllPatientsAndEmployees();
+		System.out.println("1 hour has passed...");
 		}
 
 	private void hireEmployee() throws Exception
@@ -215,9 +218,41 @@ public class AppInterface {
 			}
 		}
 
-	private void taskEmployee() throws Exception
+	private void taskMedicalEmployee() throws Exception
 		{
-		System.out.println("Task employee not yet implemented.");
+		ArrayList<Employee> medicalEmployees = hp.getAllMedicalEmployees();
+		ArrayList<String> employeeNames = HospitalProgram.convertIdentitiesToNames(new ArrayList<Identity>(medicalEmployees));
+		MenuDialogue medicalEmployeeMD = new MenuDialogue("Choose a medical employee to task.", employeeNames);
+		medicalEmployeeMD.showDialogue();
+		int command = medicalEmployeeMD.getCommand();
+		Employee employee = medicalEmployees.get(command);
+
+		ArrayList<Patient> patients = hp.getPatients();
+		ArrayList<String> patientNames = HospitalProgram.convertIdentitiesToNames(new ArrayList<Identity>(patients));
+		MenuDialogue patientMD = new MenuDialogue("Choose a patient for " + employee.getClass().getSimpleName() + " " + employee.getLastName() + " to administer.", patientNames);
+		patientMD.showDialogue();
+		int command2 = patientMD.getCommand();
+		Patient patient = patients.get(command2);
+
+		MenuDialogue taskMD = new MenuDialogue("What task will be performed?", MED_TASK_MENU_OPTIONS);
+		taskMD.showDialogue();
+		int command3 = taskMD.getCommand();
+
+		CareGiver careGiver = (CareGiver) employee;
+
+		switch (command3)
+			{
+			case 0:
+				careGiver.careForPatient(patient);
+				break;
+			case 1:
+				careGiver.drawBlood(patient);
+				break;
+			case 2:
+				System.out.println("Task canceled...");
+				break;
+			default:
+			}
 		}
 
 	private void admitPatient() throws Exception

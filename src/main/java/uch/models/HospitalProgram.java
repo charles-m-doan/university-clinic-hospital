@@ -1,10 +1,13 @@
 package uch.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import uch.identities.Doctor;
+import uch.identities.Nurse;
 import uch.identities.Patient;
 
 public class HospitalProgram {
@@ -15,6 +18,20 @@ public class HospitalProgram {
 		{
 		employees = new HashMap<UUID, Employee>();
 		patients = new HashMap<UUID, Patient>();
+		}
+
+	public void tickAllPatientsAndEmployees()
+		{
+		Collection<Patient> patientsToTick = patients.values();
+		for (Patient patient : patientsToTick)
+			{
+			patient.tick();
+			}
+		Collection<Employee> employeesToTick = employees.values();
+		for (Employee employee : employeesToTick)
+			{
+			employee.tick();
+			}
 		}
 
 	public void addEmployee(Employee employee)
@@ -48,13 +65,38 @@ public class HospitalProgram {
 			}
 		}
 
-	public ArrayList<Employee> findAllEmployeesWithSubName(String subName)
+	public Employee getEmployee(UUID id)
+		{
+		return employees.get(id);
+		}
+
+	public Patient getPatient(UUID id)
+		{
+		return patients.get(id);
+		}
+
+	public ArrayList<Employee> getAllMedicalEmployees()
 		{
 		ArrayList<Employee> matchingEmployees = new ArrayList<Employee>();
 		for (Map.Entry<UUID, Employee> entry : employees.entrySet())
 			{
 			Employee employee = entry.getValue();
-			if (employee.getName().contains(subName))
+			if (employee instanceof Doctor || employee instanceof Nurse)
+				{
+				matchingEmployees.add(employee);
+				}
+			}
+		return matchingEmployees;
+		}
+
+	public ArrayList<Employee> findAllEmployeesWithSubName(String subName)
+		{
+		subName = subName.toLowerCase();
+		ArrayList<Employee> matchingEmployees = new ArrayList<Employee>();
+		for (Map.Entry<UUID, Employee> entry : employees.entrySet())
+			{
+			Employee employee = entry.getValue();
+			if (employee.getName().toLowerCase().contains(subName))
 				{
 				matchingEmployees.add(employee);
 				}

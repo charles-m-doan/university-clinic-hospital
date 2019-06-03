@@ -2,19 +2,23 @@ package uch.identities;
 
 import java.util.Random;
 
+import uch.Global;
+import uch.interfaces.CareGiver;
 import uch.models.Employee;
 
-public class Doctor extends Employee {
+public class Doctor extends Employee implements CareGiver {
 
 	public static final String[] SPECIALTIES = { "Heart", "Brain", "Back", "Liver", "Lung", "Face", "Foot" };
 
 	private String specialty;
+	private boolean inSurgery;
 
 	public Doctor(String name)
 		{
 		super(name);
 		this.specialty = getRandomSpecialty();
 		this.salary = 90000.0;
+		this.inSurgery = false;
 		}
 
 	public Doctor(String name, String specialty)
@@ -22,6 +26,17 @@ public class Doctor extends Employee {
 		super(name);
 		this.specialty = specialty;
 		this.salary = 90000.0;
+		this.inSurgery = false;
+		}
+
+	@Override
+	public void tick()
+		{
+		int randomValue = Global.getValueBetweenRange(0, 100);
+		if (randomValue > 60)
+			{
+			inSurgery = !inSurgery;
+			}
 		}
 
 	@Override
@@ -36,6 +51,11 @@ public class Doctor extends Employee {
 			System.out.println(getJobTitle() + " \"" + getName() + "\" has been paid.");
 			this.paid = true;
 			}
+		}
+
+	public boolean isInSurgery()
+		{
+		return inSurgery;
 		}
 
 	public String getSpecialty()
@@ -63,7 +83,7 @@ public class Doctor extends Employee {
 		int randomValue = random.nextInt(SPECIALTIES.length);
 		return SPECIALTIES[randomValue];
 		}
-	
+
 	public String getJobTitle()
 		{
 		return specialty + " Doctor";
@@ -71,7 +91,14 @@ public class Doctor extends Employee {
 
 	public String getStatus()
 		{
-		return "On Call";
+		if (inSurgery)
+			{
+			return "In Surgery";
+			}
+		else
+			{
+			return "On Call";
+			}
 		}
 
 }

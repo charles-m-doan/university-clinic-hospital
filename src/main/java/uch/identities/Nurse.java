@@ -1,8 +1,10 @@
 package uch.identities;
 
+import uch.Global;
+import uch.interfaces.CareGiver;
 import uch.models.Employee;
 
-public class Nurse extends Employee {
+public class Nurse extends Employee implements CareGiver {
 
 	private int numOfPatients;
 
@@ -18,6 +20,20 @@ public class Nurse extends Employee {
 		super(name);
 		this.numOfPatients = 0;
 		this.salary = 50000.0;
+		}
+
+	@Override
+	public void tick()
+		{
+		int randomValue = Global.getValueBetweenRange(0, 100);
+		if (randomValue > 30)
+			{
+			numOfPatients = Global.getValueBetweenRange(1, 10);
+			}
+		else
+			{
+			numOfPatients = 0;
+			}
 		}
 
 	@Override

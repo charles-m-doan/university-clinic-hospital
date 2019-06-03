@@ -1,5 +1,6 @@
 package uch.identities;
 
+import uch.Global;
 import uch.models.Employee;
 
 public class Janitor extends Employee {
@@ -10,6 +11,16 @@ public class Janitor extends Employee {
 		super(name);
 		this.setSweeping(false);
 		this.salary = 40000.0;
+		}
+	
+	@Override
+	public void tick()
+		{
+		int randomValue = Global.getValueBetweenRange(0, 100);
+		if (randomValue > 60)
+			{
+			sweeping = !sweeping;
+			}
 		}
 
 	@Override

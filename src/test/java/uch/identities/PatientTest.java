@@ -8,7 +8,7 @@ import uch.identities.Patient;
 
 public class PatientTest {
 
-	Patient underTest = new Patient();
+	Patient underTest = new Patient("Bill");
 
 	public PatientTest()
 		{
@@ -23,19 +23,21 @@ public class PatientTest {
 		}
 
 	@Test
-	public void patientShouldHaveBloodLevelOf10()
+	public void patientShouldHaveBloodLevelOf10HigherOrMax()
 		{
 		int amountToIncrease = 10;
 		underTest.increaseBloodLevel(amountToIncrease);
-		assertEquals(Patient.DEFAULT_BLOOD_LEVEL, underTest.getBloodLevel());
+		int expected = Math.min(20, underTest.maxBloodLevel);
+		int actual = underTest.getBloodLevel();
+		assertEquals(expected, actual);
 		}
 
 	@Test
-	public void patientShouldHaveDefaultHealthLevel()
+	public void patientShouldHaveMaxHealthLevel()
 		{
-		int amountToIncrease = 10;
+		int amountToIncrease = 1000;
 		underTest.increaseHealthLevel(amountToIncrease);
-		assertEquals(Patient.DEFAULT_HEALTH_LEVEL, underTest.getHealthLevel());
+		assertEquals(underTest.maxHealthLevel, underTest.getHealthLevel());
 		}
 
 	@Test

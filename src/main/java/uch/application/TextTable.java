@@ -25,21 +25,28 @@ public class TextTable {
 
 	public TextTable(ArrayList<Identity> tableElements) throws Exception
 		{
-		validateElements(tableElements);
 		this.tableElements = tableElements;
-		this.columnLabels = tableElements.get(0).getColumnLabels();
-		this.columnWidths = determineColumnWidths();
-		this.formattedColumnLabels = generateTableRow(columnWidths, columnLabels);
-		this.horrizontalBorder = createHorrizontalBorder();
-		this.tableHeader = generateTableHeader();
+		if (!tableElements.isEmpty())
+			{
+			validateElements(tableElements);
+			this.columnLabels = tableElements.get(0).getColumnLabels();
+			this.columnWidths = determineColumnWidths();
+			this.formattedColumnLabels = generateTableRow(columnWidths, columnLabels);
+			this.horrizontalBorder = createHorrizontalBorder();
+			this.tableHeader = generateTableHeader();
+			}
+		else
+			{
+			this.columnLabels = null;
+			this.columnWidths = null;
+			this.formattedColumnLabels = null;
+			this.horrizontalBorder = null;
+			this.tableHeader = null;
+			}
 		}
 
 	private void validateElements(ArrayList<Identity> tableElements) throws Exception
 		{
-		if (tableElements.isEmpty())
-			{
-			throw new Exception("List of table elements is empty.");
-			}
 		// All elements must have same number of column labels, and number of row values must equal number of column labels
 		int labelCount = tableElements.get(0).getColumnLabels().size();
 		int rowValueCount = tableElements.get(0).getData().size();
@@ -137,6 +144,10 @@ public class TextTable {
 
 	public String toString()
 		{
+		if (tableElements.isEmpty())
+			{
+			return "No entries to list." + NEWLINE;
+			}
 		Collections.sort(tableElements);
 		StringBuilder tableBuilder = new StringBuilder();
 		tableBuilder.append(tableHeader);

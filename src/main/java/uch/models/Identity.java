@@ -9,6 +9,8 @@ public abstract class Identity implements Comparable<Identity> {
 	protected String firstName;
 	protected String middleName;
 	protected String lastName;
+	
+	public abstract void tick();
 
 	public Identity()
 		{

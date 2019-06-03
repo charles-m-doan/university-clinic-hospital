@@ -1,13 +1,21 @@
 package uch;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class GlobalHelpers {
+public class Global {
 
-	public static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	public static final String NEWLINE = System.getProperty("line.separator");
+	public static final Random random = new Random(System.nanoTime());
 
-	private GlobalHelpers()
+	private Global()
 		{
+		}
+
+	public static int getValueBetweenRange(int min, int max)
+		{
+		int randomValue = min + random.nextInt((max - min) + 1);
+		return randomValue;
 		}
 
 	public static void printStringArray(String[] strArr)
@@ -31,7 +39,7 @@ public class GlobalHelpers {
 		StringBuilder sb = new StringBuilder();
 		for (String str : stringList)
 			{
-			sb.append(LINE_SEPARATOR + str);
+			sb.append(NEWLINE + str);
 			}
 		return sb.toString();
 		}

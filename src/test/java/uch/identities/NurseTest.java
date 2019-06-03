@@ -9,7 +9,7 @@ import uch.identities.Nurse;
 public class NurseTest {
 
 	Nurse underTest = new Nurse("Bill", 1);
-	Patient testPatient = new Patient();
+	Patient testPatient = new Patient("Joe");
 	Patient testPatient2 = new Patient("Molly Weasley", 5, 10);
 
 	public NurseTest()

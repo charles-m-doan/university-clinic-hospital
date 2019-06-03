@@ -10,7 +10,7 @@ import uch.identities.Doctor;
 public class DoctorTest {
 
 	Doctor underTest = new Doctor("Bill", "Heart");
-	Patient testPatient = new Patient();
+	Patient testPatient = new Patient("Joe");
 
 	@Test
 	public void paidShouldBeTrue()
