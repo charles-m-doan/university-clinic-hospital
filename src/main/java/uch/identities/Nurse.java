@@ -26,9 +26,9 @@ public class Nurse extends Employee implements CareGiver {
 	public void tick()
 		{
 		int randomValue = Global.getValueBetweenRange(0, 100);
-		if (randomValue > 30)
+		if (randomValue > 40)
 			{
-			numOfPatients = Global.getValueBetweenRange(1, 10);
+			numOfPatients = Global.getValueBetweenRange(0, Global.getValueBetweenRange(0, 10));
 			}
 		else
 			{
